@@ -1,0 +1,392 @@
+% Examenes_de_PF_con_Haskell_Vol11.tex
+% Exámenes de programación funcional con Haskell (Curso 2019-20)
+% José A. Alonso Jiménez <jalonso@us.es>
+% Sevilla, 31 de octubre de 2019
+% =============================================================================
+
+\documentclass[a4paper,12pt,twoside]{book}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% § Paquetes adicionales                                                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Configuración para XeLaTeX
+\usepackage{fontspec}
+\usepackage{xltxtra}
+\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
+\setromanfont{DejaVu Sans}
+% \setsansfont{Arial}
+\setmonofont{DejaVu Sans Mono}[Scale={0.90}]
+
+% Notas: La lista de fuentes disponibles se obtiene con fc-list
+
+% \usepackage{ucs}
+% \usepackage[utf8]{inputenc}        % Acentos de UTF8
+\usepackage[spanish]{babel}        % Castellanización.
+% \usepackage[T1]{fontenc}           % Codificación T1 con European Computer
+%                                    % Modern.  
+% \usepackage{graphicx}
+\usepackage{fancyvrb}              % Verbatim extendido
+% \usepackage{mathpazo}              % Fuentes semejante a palatino
+% \usepackage[scaled=.90]{helvet}
+% \usepackage{cmtt}
+% \renewcommand{\ttdefault}{cmtt}
+\usepackage{a4wide}
+\usepackage{minted}
+
+\linespread{1.05}                  % Distancia entre líneas
+\setlength{\parindent}{2em}        % Indentación de comienzo de párrafo
+% \deactivatetilden                  % Elima uso de ~ para la eñe
+\raggedbottom                      % No ajusta los espacios verticales.
+
+\usepackage[%
+  colorlinks=true,
+  urlcolor=blue,
+  % pdftex,
+  pdfauthor={José A. Alonso <jalonso@us.es>},%
+  pdftitle={Examenes de Informatica de 1 de Matematicas},%
+  pdfstartview=FitH,%
+  bookmarks=false]{hyperref}      
+
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{4}
+
+\usepackage{tocstyle}
+\usetocstyle{KOMAlike}
+
+\newenvironment{enumerate*}%
+  {\vspace*{-0mm}
+   \begin{enumerate}%
+    \setlength{\itemsep}{0pt}%
+    \setlength{\parskip}{0pt}}%
+  {\vspace*{-0mm}
+   \end{enumerate}}
+
+\newenvironment{itemize*}%
+  {\vspace*{-0mm}
+   \begin{itemize}%
+    \setlength{\itemsep}{0pt}%
+    \setlength{\parskip}{0pt}}%
+  {\vspace*{-0mm}
+   \end{itemize}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% § Cabeceras                                                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fancyhdr}
+
+\addtolength{\headheight}{\baselineskip}
+
+\pagestyle{fancy}
+
+\cfoot{}
+
+\fancyhead{}
+\fancyhead[RE]{\mdseries\sffamily \nouppercase{\leftmark}}
+\fancyhead[LO]{\mdseries\sffamily \nouppercase{\rightmark}}
+\fancyhead[LE,RO]{\mdseries\sffamily \thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% § Definiciones                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input definiciones
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% § Título                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{
+  {\LARGE Exámenes de \\ ``Programaci\'on funcional con Haskell''} \\ 
+  {\large Vol. 11 (Curso 2019--20)}} 
+\author{
+  \href{http://www.cs.us.es/~jalonso}{José A. Alonso Jiménez}}
+\date{\vfill \hrule \vspace*{2mm}
+  \begin{tabular}{l}
+      \href{http://www.cs.us.es/glc}
+           {Grupo de Lógica Computacional} \\
+      \href{http://www.cs.us.es}
+           {Dpto. de Ciencias de la Computación e Inteligencia Artificial} \\
+      \href{http://www.us.es}
+           {Universidad de Sevilla}  \\
+      Sevilla, 31 de octubre de 2019
+  \end{tabular}\hfill\mbox{}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% § Documento                                                              %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \includeonly{}
+
+% \includexmp{licencia}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\input{Licencia/licenciaCC}
+\newpage
+
+\tableofcontents
+\clearpage
+
+\renewcommand{\chaptername}{}
+
+\chapter*{Introducción}
+\addcontentsline{toc}{chapter}{Introducción}
+
+Este libro es una recopilación de las soluciones de
+ejercicios de los exámenes de programación funcional con Haskell de la
+\href{http://www.cs.us.es/~jalonso/cursos/i1m-19}
+     {asignatura de Informática (curso 2019--20)}
+del
+\href{http://www.matematicas.us.es/estudios/grado-en-matematicas}
+     {Grado en Matemática} 
+de la 
+\href{http://www.us.es/}
+     {Universidad de Sevilla}.
+
+Los exámenes se realizaron en el aula de informática y su duración
+fue de 2 horas. La materia de cada examen es la impartida desde el
+comienzo del curso (generalmente, el 1 de octubre) hasta la fecha
+del examen. Dicha materia se encuentra en los libros de temas y
+ejercicios del curso:
+\begin{itemize}
+\item
+  \href{https://www.cs.us.es/~jalonso/cursos/i1m-19/temas/2019-20-IM-temas-PF.pdf}
+  {Temas de programación funcional (curso 2019--20)}\
+  \footnote{\url{https://www.cs.us.es/~jalonso/cursos/i1m-19/temas/2019-20-IM-temas-PF.pdf}} 
+\item
+  \href{https://www.cs.us.es/~jalonso/cursos/i1m-19/ejercicios/ejercicios-I1M-2019.pdf}
+  {Ejercicios de ``Informática de 1º de Matemáticas'' (2019--20)}\
+  \footnote{\url{https://www.cs.us.es/~jalonso/cursos/i1m-19/ejercicios/ejercicios-I1M-2019.pdf}}
+\item
+  \href{http://www.cs.us.es/~jalonso/publicaciones/Piensa_en_Haskell.pdf}
+  {Piensa en Haskell (Ejercicios de programación funcional con Haskell)}\
+  \footnote{\url{http://www.cs.us.es/~jalonso/publicaciones/Piensa_en_Haskell.pdf}}
+\end{itemize}
+
+El libro consta de 5 capítulos correspondientes a 5 grupos de la
+asignatura. En cada capítulo hay una sección por cada uno de los
+exámenes del grupo. Los ejercicios de cada examen han sido propuestos
+por los profesores de su grupo (cuyos nombres aparecen en el título del
+capítulo). Sin embargo, los he modificado para unificar el estilo de su
+presentación.
+
+Finalmente, el libro contiene dos apéndices. Uno con el método de Polya
+de resolución de problemas (sobre el que se hace énfasis durante todo el
+curso) y el otro con un resumen de las funciones de Haskell de uso más
+frecuente.
+
+Los códigos del libro están disponibles en
+\href{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol11}
+     {GitHub}
+     \footnote{{\url{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol11}}}
+
+Este libro es el 11º volumen de la serie de recopilaciones de
+exámenes de programación funcional con Haskell. Los volúmenes anteriores son
+\begin{itemize}
+\item
+  \href{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol1}
+  {Exámenes de ``Programaci\'on funcional con Haskell''.
+    Vol. 1 (Curso 2009--10)}\
+    \footnote{\url{{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol1}}}
+
+\item
+  \href{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol2}
+  {Exámenes de ``Programaci\'on funcional con Haskell''.
+    Vol. 2 (Curso 2010--11)}\
+    \footnote{\url{{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol2}}}
+
+\item
+  \href{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol3}
+  {Exámenes de ``Programaci\'on funcional con Haskell''.
+    Vol. 3 (Curso 2011--12)}\
+    \footnote{\url{{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol3}}}
+
+\item
+  \href{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol4}
+  {Exámenes de ``Programaci\'on funcional con Haskell''.
+    Vol. 4 (Curso 2012--13)}\
+    \footnote{\url{{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol4}}}
+
+\item
+  \href{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol5}
+  {Exámenes de ``Programaci\'on funcional con Haskell''.
+    Vol. 5 (Curso 2013--14)}\
+    \footnote{\url{{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol5}}}
+
+\item
+  \href{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol6}
+  {Exámenes de ``Programaci\'on funcional con Haskell''.
+    Vol. 6 (Curso 2014--15)}\
+    \footnote{\url{{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol6}}}
+
+\item
+  \href{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol7}
+  {Exámenes de ``Programaci\'on funcional con Haskell''.
+    Vol. 6 (Curso 2015--16)}\
+    \footnote{\url{{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol7}}}
+
+\item
+  \href{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol8}
+  {Exámenes de ``Programaci\'on funcional con Haskell''.
+    Vol. 8 (Curso 2016--17)}\
+    \footnote{\url{{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol8}}}
+
+\item
+  \href{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol9}
+  {Exámenes de ``Programaci\'on funcional con Haskell''.
+    Vol. 9 (Curso 2017--18)}\
+    \footnote{\url{{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol9}}}
+
+\item
+  \href{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol10}
+  {Exámenes de ``Programaci\'on funcional con Haskell''.
+    Vol. 10 (Curso 2018--19)}\
+    \footnote{\url{{https://github.com/jaalonso/Examenes_de_PF_con_Haskell_Vol10}}}
+
+\end{itemize}
+     
+\begin{flushright}
+  José A. Alonso \\
+  Sevilla, 31 de octubre de 2019
+\end{flushright}
+
+% \chapter{Exámenes del grupo 1}
+% \chapterauthor{Antonia M. Chávez}
+% \section{Examen 1 (11 de noviembre de 2019)}
+% \examen{../Examenes/Grupo_1/examen_1_11_nov.hs}
+% \section{Examen 2 (16 de diciembre de 2019)}
+% \examen{../Examenes/Grupo_1/examen_12_16_dic.hs}
+% \section{Examen 3 (23 de enero de 2020)}
+% \examen{../Examenes/Grupo_1/examen_3_23_ene.hs}
+% \section{Examen 4 (16 de marzo de 2020}
+% \examen{../Examenes/Grupo_1/examen_4_16_mar.hs}
+% \section{Examen 5 (11 de mayo de 2020)}
+% \examen{../Examenes/Grupo_1/examen_5_11_may.hs}
+% \section{Examen 6 (15 de junio de 2020)}
+% \examen{../Examenes/Grupo_1/examen_6_15_jun.hs}
+% \section{Examen 7 (23 de junio de 2020)}
+% \examen{../Examenes/Grupo_1/examen_7_23_jun.hs}
+% \section{Examen 8 (02 de septiembre de 2020)}
+% \examen{../Examenes/Grupo_1/examen_8_02_sep.hs}
+        
+% \chapter{Exámenes del grupo 2}
+% \chapterauthor{María J. Hidalgo}
+% \section{Examen 1 (06 de noviembre de 2019)}
+% \examen{../Examenes/Grupo_2/examen_1_06_nov.hs}
+% \section{Examen 2 (27 de noviembre de 2019)}
+% \examen{../Examenes/Grupo_2/examen_2_27_nov.hs}
+% \section{Examen 3 (23 de enero de 2020)}
+% \examen{../Examenes/Grupo_2/examen_3_23_ene.hs}
+% \section{Examen 4 (13 de marzo de 2020)}
+% \examen{../Examenes/Grupo_2/examen_4_13_mar.hs}
+% \section{Examen 5 (24 de abril de 2020)}
+% \examen{../Examenes/Grupo_2/examen_5_24_abr.hs}
+% \section{Examen 6 (15 de junio de 2020)}
+% \examen{../Examenes/Grupo_2/examen_6_15_jun.hs}
+% \section{Examen 7 (23 de junio de 2020)}
+% \examen{../Examenes/Grupo_2/examen_7_23_jun.hs}
+% \section{Examen 8 (02 de septiembre de 2020)}
+% \examen{../Examenes/Grupo_2/examen_8_02_sep.hs}
+    
+\chapter{Exámenes del grupo 3}
+\chapterauthor{Francisco J. Martín}
+\section{Examen 1 (28 de octubre de 2019}
+\examen{../Examenes/Grupo_3/examen_1_28_oct.hs}
+% \section{Examen 2 (02 de diciembre de 2019}
+% \examen{../Examenes/Grupo_3/examen_2_02_dic.hs}
+% \section{Examen 3 (23 de enero de 2020)}
+% \examen{../Examenes/Grupo_3/examen_3_23_ene.hs}
+% \section{Examen 4 (16 de marzo de 2020}
+% \examen{../Examenes/Grupo_3/examen_4_16_mar.hs}
+% \section{Examen 5 (04 de mayo de 2020}
+% \examen{../Examenes/Grupo_3/examen_5_04_may.hs}
+% \section{Examen 6 (15 de junio de 2020)}
+% \examen{../Examenes/Grupo_3/examen_6_15_jun.hs}
+% \section{Examen 7 (23 de junio de 2020)}
+% \examen{../Examenes/Grupo_3/examen_7_23_jun.hs}
+% \section{Examen 8 (02 de septiembre de 2020)}
+% \examen{../Examenes/Grupo_3/examen_8_02_sep.hs}
+
+\chapter{Exámenes del grupo 4}
+\chapterauthor{José A. Alonso}
+\section{Examen 1 (30 de octubre de 2019)}
+\examen{../Examenes/Grupo_4/examen_1_30_oct.hs}
+% \section{Examen 2 (18 de diciembre de 2019)}
+% \examen{../Examenes/Grupo_4/examen_2_18_dic.hs}
+% \section{Examen 3 (23 de enero de 2020)}
+% \examen{../Examenes/Grupo_4/examen_3_23_ene.hs}
+% \section{Examen 4 (18 de marzo de 2020)}
+% \examen{../Examenes/Grupo_4/examen_4_18_mar.hs}
+% \section{Examen 5 (06 de mayo de 2020)}
+% \examen{../Examenes/Grupo_4/examen_5_06_may.hs}
+% \section{Examen 6 (15 de junio de 2020)}
+% \examen{../Examenes/Grupo_4/examen_6_15_jun.hs}
+% \section{Examen 7 (23 de junio de 2020)}
+% \examen{../Examenes/Grupo_4/examen_7_23_jun.hs}
+% \section{Examen 8 (02 de septiembre de 2020)}
+% \examen{../Examenes/Grupo_4/examen_8_02_sep.hs}
+
+% \chapter{Exámenes del grupo 5}
+% \chapterauthor{Andrés Cordón y Miguel A. Martínez}
+% \section{Examen 1 (06 de noviembre de 2019)}
+% \examen{../Examenes/Grupo_5/examen_1_06_nov.hs}
+% \section{Examen 2 (11 de diciembre de 2019)}
+% \examen{../Examenes/Grupo_5/examen_2_11_dic.hs}
+% \section{Examen 3 (23 de enero de 2020)}
+% \examen{../Examenes/Grupo_5/examen_3_23_ene.hs}
+% \section{Examen 4 (11 de marzo de 2020)}
+% \examen{../Examenes/Grupo_5/examen_4_11_mar.hs}
+% \section{Examen 5 (06 de mayo de 2020)}
+% \examen{../Examenes/Grupo_5/examen_5_06_may.hs}
+% \section{Examen 6 (15 de junio de 2020)}
+% \examen{../Examenes/Grupo_5/examen_6_15_jun.hs}
+% \section{Examen 7 (23 de junio de 2020)}
+% \examen{../Examenes/Grupo_5/examen_7_23_jun.hs}
+% \section{Examen 8 (02 de septiembre de 2020)}
+% \examen{../Examenes/Grupo_5/examen_8_02_sep.hs}
+
+\appendix % Apéndices
+
+% A. Resumen de funciones Haskell
+\include{Apendice/resumen_Haskell}
+
+% B. Método de Pólya para la resolución de problemas
+\include{Apendice/metodo_de_Polya}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Bibliografía                                                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \nocite{Alonso-12a}
+\nocite{Alonso-12b}
+\nocite{Bird-99a}
+\nocite{Cunningham-10a}
+\nocite{Daume-06}
+\nocite{Davie-92a}
+\nocite{Doets-04a}
+\nocite{Fokker-96}
+\nocite{Hudak-00a}
+\nocite{Hudak-12a}
+\nocite{Hutton-07a}
+\nocite{OSullivan-08a}
+\nocite{Rabhi-99a}
+\nocite{Polya-65a}
+\nocite{Ruiz-04}
+\nocite{Thompson-11a}
+
+\addcontentsline{toc}{chapter}{Bibliografía}
+\bibliographystyle{abbrv}
+\bibliography{Examenes_de_PF_con_Haskell_Vol10}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+

@@ -1,0 +1,21 @@
+\babel@toc {spanish}{}
+\contentsline {chapter}{Introducción}{5}{chapter*.2}
+\contentsline {chapter}{\numberline {1}Exámenes del grupo 3}{7}{chapter.1}
+\vskip -10pt
+\contentsline {chapter}{\hskip 1.3em\mdseries Francisco J. Martín}{}{}
+\vskip 5pt
+\contentsline {section}{\numberline {1.1}Examen 1 (28 de octubre de 2019}{7}{section.1.1}
+\contentsline {chapter}{\numberline {2}Exámenes del grupo 4}{13}{chapter.2}
+\vskip -10pt
+\contentsline {chapter}{\hskip 1.3em\mdseries José A. Alonso}{}{}
+\vskip 5pt
+\contentsline {section}{\numberline {2.1}Examen 1 (30 de octubre de 2019)}{13}{section.2.1}
+\contentsline {chapter}{\numberline {A}Resumen de funciones predefinidas de Haskell}{19}{appendix.Alph1}
+\contentsline {section}{\numberline {A.1}Resumen de funciones sobre TAD en Haskell}{21}{section.Alph1.1}
+\contentsline {subsection}{\numberline {A.1.1}Polinomios}{21}{subsection.Alph1.1.1}
+\contentsline {subsection}{\numberline {A.1.2}Vectores y matrices (\texttt {Data.Array})}{22}{subsection.Alph1.1.2}
+\contentsline {subsection}{\numberline {A.1.3}Tablas}{22}{subsection.Alph1.1.3}
+\contentsline {subsection}{\numberline {A.1.4}Grafos}{23}{subsection.Alph1.1.4}
+\contentsline {chapter}{\numberline {B}Método de Pólya para la resolución de problemas}{25}{appendix.Alph2}
+\contentsline {section}{\numberline {B.1}Método de Pólya para la resolución de problemas matemáticos}{25}{section.Alph2.1}
+\contentsline {section}{\numberline {B.2}Método de Pólya para resolver problemas de programación}{26}{section.Alph2.2}
