@@ -4,7 +4,6 @@
 
 -- Nota: La puntuación de cada ejercicio es 2.5 puntos.
 
-
 import Test.QuickCheck
 
 -- ---------------------------------------------------------------------
@@ -99,8 +98,6 @@ sumaListas2 xs ys = [x+y | (x,y) <- zip (xs ++ replicate (k-m) 0)
   where m = length xs
         n = length ys
         k = max m n
-                    
-                                        
 
 -- ---------------------------------------------------------------------
 -- Ejercicio 3.2. Comprobar con QuickCheck que el número de elementos de
@@ -130,18 +127,59 @@ prop_sumaListas xs ys =
 --    [5,53,157,173,211,257,263,373,563,593,607,653,733,947,977]
 -- ---------------------------------------------------------------------
 
+-- 1ª solución
+-- ===========
+
 primosEquilibrados :: Int -> [Int]
-primosEquilibrados n = aux (primos n)
+primosEquilibrados n =
+  [x | x <- [5,7..n]
+     , esPrimo x
+     , esEquilibrado x]
+
+-- (esPrimo n) se verifica si n es primo. Por ejemplo,
+--    esPrimo 5  ==  True
+--    esPrimo 6  ==  False
+esPrimo :: Int -> Bool
+esPrimo n = divisores n == [1,n]
+
+-- (primos n) es la lista de los números primos menores o iguales que
+-- n. Por ejemplo,
+--    primos 50  ==  [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47]
+primos :: Int -> [Int]
+primos n = [x | x <- [1..n], esPrimo x]
+
+-- (divisores n) es la lista de los divisores de n Por ejemplo,
+--    divisores 36  ==  [1,2,3,4,6,9,12,18,36]
+divisores :: Int -> [Int]
+divisores n = [x | x <- [1..n], n `mod` x == 0]
+
+-- (esEquilibrado x) se verifica si x es la media de su primo anterior y
+-- su primo siguiente. Por ejemplo,
+--    esEquilibrado 5  ==  True
+--    esEquilibrado 7  ==  False
+esEquilibrado :: Int -> Bool
+esEquilibrado x = 2 * x == primoAnterior x + primoSiguiente x
+
+-- (primoAnterior x) es el primo anterior a x. Por ejemplo,
+--    primoAnterior 22  ==  19
+primoAnterior :: Int -> Int
+primoAnterior x = head [y | y <- [x-1,x-2..]
+                          , esPrimo y]
+
+-- (primoSiguiente x) es el primo siguiente a x. Por ejemplo,
+--    primoSiguiente 22  ==  23
+--    primoSiguiente 23  ==  29
+primoSiguiente :: Int -> Int
+primoSiguiente x = head [y | y <- [x+1..]
+                           , esPrimo y]
+
+-- 2ª solución
+-- ===========
+
+primosEquilibrados2 :: Int -> [Int]
+primosEquilibrados2 n = aux (primos n)
   where aux (x1:x2:x3:xs)
           | 2*x2 == x1+x3 = x2 : aux (x2:x3:xs)
           | otherwise     = aux (x2:x3:xs)
         aux _             = []
         
-primos :: Int -> [Int]
-primos n = [x | x <- [1..n], esPrimo x]
-
-esPrimo :: Int -> Bool
-esPrimo n = divisores n == [1,n]
-
-divisores :: Int -> [Int]
-divisores n = [x | x <- [1..n], n `mod` x == 0]
