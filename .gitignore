@@ -19,4 +19,5 @@ Vol#
 Makefile
 Examenes_de_PF_con_Haskell_Vol11_pdflatex.tex
 *_minted*
-*.log
+Libro/Examenes_de_PF_con_Haskell_Vol11.log
+Libro/Examenes_de_PF_con_Haskell_Vol11.toc
