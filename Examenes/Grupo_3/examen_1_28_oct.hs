@@ -152,5 +152,7 @@ sumaSesgada2 n m =
         b  = length ys
         c  = max a b
 
+-- (digitos n) es la lista de los dígitos de n. Por ejemplo,
+--    digitos 325  ==  [3,2,5]
 digitos :: Integer -> [Integer]
 digitos n = [read [c] | c <- show n] 
