@@ -1,5 +1,5 @@
 # Exámenes de programación funcional con Haskell. Vol. 11 (Curso 2019-20)
-
+ 
 Este repositorio contiene los las soluciones de ejercicios de los exámenes de
 programación funcional con Haskell de la [[http://www.cs.us.es/~jalonso/cursos/i1m-19][asignatura de Informática]] del [[http://www.matematicas.us.es/estudios/grado-en-matematicas][Grado en
 Matemática]] de la [[http://www.us.es][Universidad de Sevilla]].
